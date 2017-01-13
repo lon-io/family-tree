@@ -1,0 +1,47 @@
+<!--
+We will create a family tree using just CSS(3)
+The markup will be simple nested lists
+-->
+<div class="tree">
+  <ul>
+    <li>
+      <div class="icon" *ngIf="showCheck" (click)="onChecked()">
+        <i class="material-icons">check</i>
+      </div>
+      <button >{{tree?._root?.data?.name}}</button>
+      <!--<ul *ngFor="let person of tree?._root?.children">-->
+      <ul >
+        <!--<app-person-node (checked)="onChildChecked($event)" [person]="person"></app-person-node>-->
+        <li>
+          <button >Child</button>
+          <ul>
+            <li>
+              <button >Grand Child</button>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <button >Child</button>
+          <ul>
+            <li><button >Grand Child</button></li>
+            <li>
+              <button >Grand Child</button>
+              <ul>
+                <li>
+                  <button >Great Grand Child</button>
+                </li>
+                <li>
+                  <button >Great Grand Child</button>
+                </li>
+                <li>
+                  <button >Great Grand Child</button>
+                </li>
+              </ul>
+            </li>
+            <li><button >Grand Child</button></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

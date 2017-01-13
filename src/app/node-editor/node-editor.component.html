@@ -1,0 +1,18 @@
+<div class="note-editor">
+  <i (click)="showEditor(true)" class="material-icons icon">color_lens</i>
+  <div class="editor row center-xs" *ngIf="isEditorVisible">
+    <form class="row" (ngSubmit)="updateTitle()">
+      <input
+        type="text"
+        [(ngModel)]="person.data.title"
+        name="title"
+      >
+      <button
+        type="submit"
+        class="btn-light"
+      >
+        Done
+      </button>
+    </form>
+  </div>
+</div>

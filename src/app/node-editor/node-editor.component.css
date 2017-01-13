@@ -1,0 +1,12 @@
+.note-editor {
+  position: relative;
+}
+.editor {
+  min-width: 120px;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  background-color: #efefef;
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
