@@ -82,7 +82,7 @@ right connector from last child*/
 
 .tree li button{
   border: 1px solid #ccc;
-  padding: 5px 10px;
+  padding: 10px 20px;
   text-decoration: none;
   color: #666;
   font-family: arial, verdana, tahoma;
@@ -122,10 +122,10 @@ Thanks :)*/
   border: 1px solid lightgrey;
   background-color: white;
   font-size: 30px;
-  top: -10px;
-  left: -10px;
-  width: 40px;
-  height: 40px;
+  top: -5px;
+  left: -5px;
+  width: 45px;
+  height: 45px;
   border-radius: 100%;
   cursor: pointer;
 }

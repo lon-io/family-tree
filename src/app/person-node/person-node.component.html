@@ -1,23 +1,17 @@
-<!--<li (mouseenter)="toggleCheck()"-->
-    <!--(mouseleave)="toggleCheck()">-->
-  <!--<div class="icon" *ngIf="showCheck" (click)="onChecked()">-->
-    <!--<i class="material-icons">check</i>-->
-  <!--</div>-->
-  <!--<button >{{person?.data?.name}}</button>-->
-  <!--&lt;!&ndash;<div class="col-xs-3" *ngIf="isEditing">&ndash;&gt;-->
-    <!--&lt;!&ndash;<app-node-editor&ndash;&gt;-->
-      <!--&lt;!&ndash;(action)="onEditorAction($event)"&ndash;&gt;-->
-      <!--&lt;!&ndash;[person]="person">&ndash;&gt;-->
-    <!--&lt;!&ndash;</app-node-editor>&ndash;&gt;-->
-  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-  <!--<ul *ngFor="let person_ of person?.children">-->
-    <!--<app-person-node (checked)="onChildChecked($event)" [person]="person_"></app-person-node>-->
-  <!--</ul>-->
-<!--</li>-->
-<!--<li>-->
-<li>
-  <button >Child</button>
-  <ul *ngFor="let person_ of person?.children">
+<!--<div class="icon" *ngIf="showCheck" (click)="onChecked()">-->
+  <!--<i class="material-icons">check</i>-->
+<!--</div>-->
+<button (mouseenter)="toggleCheck()"
+        (mouseleave)="toggleCheck()"
+        (click)="onChecked()">{{person?.data?.name}}</button>
+<!--<div class="col-xs-3" *ngIf="isEditing">-->
+  <!--<app-node-editor-->
+    <!--(action)="onEditorAction($event)"-->
+    <!--[person]="person">-->
+  <!--</app-node-editor>-->
+<!--</div>-->
+<ul *ngIf="person?.children && person?.children.length > 0 && showChildren" >
+  <li *ngFor="let person_ of person?.children" >
     <app-person-node (checked)="onChildChecked($event)" [person]="person_"></app-person-node>
-  </ul>
-</li>
+  </li>
+</ul>

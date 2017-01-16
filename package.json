@@ -6,9 +6,8 @@
   "description": "Family Tree",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve --proxy-config proxy.conf.json --open",
+    "start": "ng serve --open",
     "prod": "ng serve --proxy-config proxy.conf.json --prod --open",
-    "be": "nodemon src/server/app.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",

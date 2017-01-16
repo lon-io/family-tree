@@ -7,11 +7,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PersonNodeComponent implements OnInit {
 
-  @Input() note = {};
+  @Input() person = {};
   @Output() checked = new EventEmitter();
 
   showCheck: boolean = false;
   isEditing: boolean = false;
+  showChildren: boolean = true;
 
   constructor() { }
 
@@ -26,8 +27,13 @@ export class PersonNodeComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  toggleShowChildren() {
+    this.showChildren = !this.showChildren;
+  }
+
   onChecked() {
-    this.toggleEditing();
+    // this.toggleEditing();
+    this.toggleShowChildren();
   }
 
   onEditorAction($event) {
