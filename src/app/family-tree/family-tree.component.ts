@@ -78,10 +78,6 @@ export class FamilyTreeComponent implements OnInit {
       parent: null,
       children : []
     };
-  };
-
-  onChildChecked($event) {
-
   }
 
 }

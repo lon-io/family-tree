@@ -1,22 +1,37 @@
-
 <button (mouseenter)="toggleCheck()"
         (mouseleave)="toggleCheck()"
         (click)="onChecked()">{{person?.data?.name}}
-  <a class="icon" *ngIf="showCheck" (click)="enableEditing()">
-    <i class="fa fa-pencil fa-1x text-success"></i>
+  <a class="icon"
+     *ngIf="showCheck"
+     (mouseenter)="toggleChildClick()"
+     (mouseleave)="toggleChildClick()"
+     (click)="addChildNode()">
+    <i class="fa fa-plus fa-1x text-success"></i>
   </a>
-  <a class="icon" *ngIf="showCheck" (click)="deleteNode()">
+  <a class="icon"
+     *ngIf="showCheck"
+     (click)="toggleEditing()"
+     (mouseenter)="toggleChildClick()"
+     (mouseleave)="toggleChildClick()">
+    <i class="fa fa-pencil fa-1x text-info"></i>
+  </a>
+  <a class="icon"
+     *ngIf="showCheck"
+     (click)="deleteNode()"
+     (mouseenter)="toggleChildClick()"
+     (mouseleave)="toggleChildClick()">
     <i class="fa fa-trash fa-1x text-danger"></i>
   </a>
 </button>
 <div class="col-xs-3" *ngIf="isEditing">
   <app-node-editor
-    (action)="onEditorAction($event)"
+    (done)="onEditorAction($event)"
+    (cancel)="onCancel($event)"
     [person]="person">
   </app-node-editor>
 </div>
 <ul *ngIf="person?.children && person?.children.length > 0 && showChildren" >
   <li *ngFor="let person_ of person?.children" >
-    <app-person-node (checked)="onChildChecked($event)" [person]="person_"></app-person-node>
+    <app-person-node [person]="person_"></app-person-node>
   </li>
 </ul>

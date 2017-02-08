@@ -7,18 +7,17 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NodeEditorComponent {
 
-  @Input() person = {};
-  @Output() action = new EventEmitter();
+  @Input() person;
+  @Output() done = new EventEmitter();
+  @Output() cancel = new EventEmitter();
 
-  isEditorVisible: boolean = false;
-
-  showEditor(value: boolean) {
-    this.isEditorVisible = value;
-  }
-
-  updateTitle(color: string) {
+  updateTitle() {
     // this.showEditor(false);
-    this.action.next(color);
+    this.done.next(this.person);
   }
+
+  // cancelEditing(value: boolean) {
+  //   this.cancel.next(true);
+  // }
 
 }

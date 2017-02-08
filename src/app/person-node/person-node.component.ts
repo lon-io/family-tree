@@ -7,12 +7,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PersonNodeComponent implements OnInit {
 
-  @Input() person = {};
-  @Output() checked = new EventEmitter();
+  @Input() person;
 
+  // To determine whether or not to dosplay the anchor tags in a node
   showCheck: boolean = false;
+  // To determine whether or not a node should display it's editor
   isEditing: boolean = false;
+  // To determine whether or not a node's children should be visible
   showChildren: boolean = true;
+  // To determine if the click action in a button originated from one of the anchor children
+  private childClicked: boolean = false;
 
   constructor() { }
 
@@ -31,29 +35,30 @@ export class PersonNodeComponent implements OnInit {
     this.showChildren = !this.showChildren;
   }
 
-  onChecked() {
-    // this.toggleEditing();
-    this.toggleShowChildren();
+  toggleChildClick() {
+    this.childClicked = !this.childClicked;
   }
 
-  enableEditing() {
-    console.log('Editing');
+  onChecked() {
+    if (!this.childClicked) {
+      this.toggleShowChildren();
+    }
   }
 
   deleteNode() {
     console.log('deleted');
   }
 
-  addChild(){
+  addChildNode() {
     console.log('adding child node');
   }
 
   onEditorAction($event) {
-
+    this.person = $event;
+    this.onCancel();
   }
 
-  onChildChecked($event) {
-
+  onCancel() {
+    this.toggleEditing();
   }
-
 }

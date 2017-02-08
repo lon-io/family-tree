@@ -6,7 +6,7 @@ The markup will be simple nested lists
   <div class="tree">
     <ul>
       <li>
-        <app-person-node (checked)="onChildChecked($event)" [person]="tree?._root"></app-person-node>
+        <app-person-node [person]="tree?._root"></app-person-node>
         <!--<div class="icon" *ngIf="showCheck" (click)="onChecked()">-->
         <!--<i class="material-icons">check</i>-->
         <!--</div>-->
