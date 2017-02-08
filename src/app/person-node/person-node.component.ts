@@ -36,6 +36,18 @@ export class PersonNodeComponent implements OnInit {
     this.toggleShowChildren();
   }
 
+  enableEditing() {
+    console.log('Editing');
+  }
+
+  deleteNode() {
+    console.log('deleted');
+  }
+
+  addChild(){
+    console.log('adding child node');
+  }
+
   onEditorAction($event) {
 
   }
