@@ -2,8 +2,31 @@
 We will create a family tree using just CSS(3)
 The markup will be simple nested lists
 -->
+
+<app-toast [message]="toast.message"></app-toast>
 <div class="container text-xs-center">
-  <div class="tree">
+  <button class="btn btn-success" *ngIf="persons.length === 0" (click)="createRoot()">Specify Patriarch</button>
+  <div class="col-xs-3" *ngIf="showCreateRootDialog">
+    <div class="note-editor shadow-2">
+      <form (ngSubmit)="addRoot()">
+        <input
+          type="text"
+          [(ngModel)]="root.data.name"
+          name="title"
+          class="col-xs-8"
+          placeholder="Fullname"
+          name="title">
+        <div class="actions col-xs-8 row between-xs">
+          <button
+            type="submit"
+            class="btn-light">
+            Done
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="tree" *ngIf="persons.length !== 0">
     <ul>
       <li>
         <app-person-node [person]="tree?._root"></app-person-node>

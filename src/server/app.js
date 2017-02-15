@@ -2,11 +2,15 @@ var express = require('express');
 var path = require('path');
 var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var app = express();
 app.set('port', (process.env.PORT || 3000));
 
 app.use('/', express.static(__dirname + '/../../dist'));
+
+app.options('*', cors());
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,12 +18,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://localhost:27017/family-tree');
 var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 // Models
-var Cat = require('./cat.model.js');
+var Person = require('./person.model.js');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -27,24 +31,24 @@ db.once('open', function() {
 
   // APIs
   // select all
-  app.get('/cats', function(req, res) {
-    Cat.find({}, function(err, docs) {
+  app.get('/persons', function(req, res) {
+    Person.find({}, function(err, docs) {
       if(err) return console.error(err);
       res.json(docs);
     });
   });
 
   // count all
-  app.get('/cats/count', function(req, res) {
-    Cat.count(function(err, count) {
+  app.get('/persons/count', function(req, res) {
+    Person.count(function(err, count) {
       if(err) return console.error(err);
       res.json(count);
     });
   });
 
   // create
-  app.post('/cat', function(req, res) {
-    var obj = new Cat(req.body);
+  app.post('/person', function(req, res) {
+    var obj = new Person(req.body);
     obj.save(function(err, obj) {
       if(err) return console.error(err);
       res.status(200).json(obj);
@@ -52,23 +56,23 @@ db.once('open', function() {
   });
 
   // find by id
-  app.get('/cat/:id', function(req, res) {
-    Cat.findOne({_id: req.params.id}, function(err, obj) {
+  app.get('/person/:id', function(req, res) {
+    Person.findOne({_id: req.params.id}, function(err, obj) {
       if(err) return console.error(err);
       res.json(obj);
     })
   });
 
   // update by id
-  app.put('/cat/:id', function(req, res) {
-    Cat.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+  app.put('/person/:id', function(req, res) {
+    Person.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
       if(err) return console.error(err);
       res.sendStatus(200);
     })
   });
 
   // delete by id
-  app.delete('/cat/:id', function(req, res) {
+  app.delete('/person/:id', function(req, res) {
     Cat.findOneAndRemove({_id: req.params.id}, function(err) {
       if(err) return console.error(err);
       res.sendStatus(200);
@@ -84,6 +88,7 @@ db.once('open', function() {
   app.listen(app.get('port'), function() {
     console.log('Angular 2 Full Stack listening on port '+app.get('port'));
   });
+
 });
 
 module.exports = app;
