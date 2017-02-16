@@ -12,7 +12,7 @@ export class DataService {
     Accept: 'application/json',
     'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
-  api_url: string = 'http://localhost:3000'
+  api_url = 'http://localhost:3000'
 
   constructor(private http: Http) { }
 

@@ -32,10 +32,18 @@ db.once('open', function() {
   // APIs
   // select all
   app.get('/persons', function(req, res) {
-    Person.find({}, function(err, docs) {
-      if(err) return console.error(err);
-      res.json(docs);
-    });
+    Person.find({})
+      .populate('parent')
+      .lean()
+      .exec()
+      .then(
+        persons => {
+          return res.json(persons)
+        }
+      )
+      .catch(err => {
+        return console.log(err);
+      })
   });
 
   // count all

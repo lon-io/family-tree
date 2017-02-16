@@ -3,6 +3,10 @@ We will create a family tree using just CSS(3)
 The markup will be simple nested lists
 -->
 
+  <div class="text-xs-center" *ngIf="isLoading">
+    <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+  </div>
+
 <app-toast [message]="toast.message"></app-toast>
 <div class="container text-xs-center">
   <button class="btn btn-success" *ngIf="persons.length === 0" (click)="createRoot()">Specify Patriarch</button>
