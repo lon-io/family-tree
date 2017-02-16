@@ -17,7 +17,7 @@ export class FamilyTree {
       parent: null,
       children : []
     };
-  }
+  };
 
   findIndex = (arr, data) => {
     let index;

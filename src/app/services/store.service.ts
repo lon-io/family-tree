@@ -15,10 +15,12 @@ const defaultState: State = {
   tree: new FamilyTree(
     {
       data : {
-        name: 'First',
+        name: '',
         deletable: false,
         node_open: true
       },
+      _id: null,
+      is_root: false,
       parent: null,
       children : []
     })
@@ -40,7 +42,7 @@ export class Store {
     return this.store.value;
   }
 
-  purge(){
+  purge() {
     this.store.next(defaultState);
   }
 }

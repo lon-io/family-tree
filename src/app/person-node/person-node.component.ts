@@ -63,7 +63,7 @@ export class PersonNodeComponent implements OnInit {
       this.dataService.deletePerson(this.person).subscribe(
         res => {
           this.isNodeDeleted = true;
-          this.updateTree.next(true);
+          this.updateTree.next(this.person);
           this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => {

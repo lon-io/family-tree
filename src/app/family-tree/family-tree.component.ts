@@ -39,55 +39,6 @@ export class FamilyTreeComponent implements OnInit {
     };
     this.getpersons();
 
-
-    // this.tree = new FamilyTree(this.createNewPersonNode({
-    //   name: 'First',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-
-    // this.tree._root.children.push(this.createNewPersonNode({
-    //   name: 'One',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[0].parent = this.tree;
-    //
-    // this.tree._root.children.push(this.createNewPersonNode({
-    //   name: 'Two',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[1].parent = this.tree;
-    //
-    // this.tree._root.children.push(this.createNewPersonNode({
-    //   name: 'Three',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[2].parent = this.tree;
-    //
-    // this.tree._root.children[0].children.push(this.createNewPersonNode({
-    //   name: 'Four',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[0].children[0].parent = this.tree._root.children[0];
-    //
-    // this.tree._root.children[0].children.push(this.createNewPersonNode({
-    //   name: 'Five',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[0].children[1].parent = this.tree._root.children[0];
-    //
-    // this.tree._root.children[2].children.push(this.createNewPersonNode({
-    //   name: 'Six',
-    //   deletable: false,
-    //   node_open: true
-    // }));
-    // this.tree._root.children[2].children[0].parent = this.tree._root.children[2];
-
   }
 
   onUpdateTree($event) {
@@ -139,7 +90,7 @@ export class FamilyTreeComponent implements OnInit {
       parent: null,
       children: []
     };
-  }
+  };
 
   // // http://stackoverflow.com/a/22072374/4931825
   unflatten(array, parent= null, tree = null) {
@@ -150,6 +101,7 @@ export class FamilyTreeComponent implements OnInit {
     }
 
     let children = _.filter(array, (child: PersonNode) => {
+      console.log(child);
       return child.is_root !== true && child.parent._id === parent._id;
     });
 

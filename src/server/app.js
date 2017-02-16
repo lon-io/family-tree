@@ -3,6 +3,7 @@ var path = require('path');
 var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var _ = require('underscore');
 
 var app = express();
 app.set('port', (process.env.PORT || 3000));
@@ -81,10 +82,27 @@ db.once('open', function() {
 
   // delete by id
   app.delete('/person/:id', function(req, res) {
-    Person.findOneAndRemove({_id: req.params.id}, function(err) {
-      if(err) return console.error(err);
-      res.sendStatus(200);
-    });
+    Person.find({parent: req.params.id})
+      .lean()
+      .exec()
+      .then(
+        children => {
+          _.each(children, (person) => {
+            Person.findOneAndRemove({_id: person._id}, function(err) {
+              if(err) return console.error(err);
+            });
+          });
+          Person.findOneAndRemove({_id: req.params.id}, function(err) {
+            if(err) return console.error(err);
+            Person.findOneAndUpdate({children: req.params.id}, {$pull: {_id: req.params.id}}, function(err) {
+            });
+            res.sendStatus(200);
+          });
+        }
+      )
+      .catch(err => {
+        return console.log(err);
+      })
   });
 
 
