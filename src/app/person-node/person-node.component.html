@@ -1,11 +1,12 @@
-<button (mouseenter)="toggleCheck()"
+<button *ngIf="!isNodeDeleted"
+        (mouseenter)="toggleCheck()"
         (mouseleave)="toggleCheck()"
         (click)="onChecked()">{{person?.data?.name}}
   <a class="icon"
      *ngIf="showCheck"
      (mouseenter)="toggleChildClick()"
      (mouseleave)="toggleChildClick()"
-     (click)="addChildNode()">
+     (click)="toggleCreatingChild()">
     <i class="fa fa-plus fa-1x text-success"></i>
   </a>
   <a class="icon"
@@ -30,8 +31,15 @@
     [person]="person">
   </app-node-editor>
 </div>
-<ul *ngIf="person?.children && person?.children.length > 0 && showChildren" >
+<div class="col-xs-3" *ngIf="isCreatingChild">
+  <app-node-creator
+    (done)="onCreatorAction($event)"
+    (cancel)="onCancel($event)"
+    [parent]="person">
+  </app-node-creator>
+</div>
+<ul *ngIf="person?.children && person?.children.length > 0 && showChildren && !isNodeDeleted" >
   <li *ngFor="let person_ of person?.children" >
-    <app-person-node [person]="person_"></app-person-node>
+    <app-person-node (updateTree)="onUpdateTree($event)" [person]="person_"></app-person-node>
   </li>
 </ul>

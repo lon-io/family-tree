@@ -30,7 +30,7 @@ export class FamilyTreeComponent implements OnInit {
       _id: null,
       is_root: true,
       data: {
-        deletable: true,
+        deletable: false,
         name: '',
         node_open: false
       },
@@ -90,6 +90,11 @@ export class FamilyTreeComponent implements OnInit {
 
   }
 
+  onUpdateTree($event) {
+    console.log('Update Tree: ' + $event);
+    this.getpersons();
+  }
+
   addRoot() {
     this.dataService.addPerson(this.root).subscribe(
       res => {
@@ -142,7 +147,6 @@ export class FamilyTreeComponent implements OnInit {
       // We're at the root node
       parent = _.findWhere(array, {is_root: true});
       tree = new FamilyTree(parent);
-      console.log('here');
     }
 
     let children = _.filter(array, (child: PersonNode) => {

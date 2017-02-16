@@ -11,6 +11,7 @@ import { ToastComponent } from './shared/toast/toast.component';
 import { FamilyTreeComponent } from './family-tree/family-tree.component';
 import { NodeEditorComponent } from './node-editor/node-editor.component';
 import { PersonNodeComponent } from './person-node/person-node.component';
+import { NodeCreatorComponent } from './node-creator/node-creator.component';
 
 const routing = RouterModule.forRoot([
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routing = RouterModule.forRoot([
     ToastComponent,
     FamilyTreeComponent,
     NodeEditorComponent,
-    PersonNodeComponent
+    PersonNodeComponent,
+    NodeCreatorComponent
   ],
   imports: [
     BrowserModule,

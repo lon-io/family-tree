@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {DataService} from '../services/data.service';
+import {ToastComponent} from '../shared/toast/toast.component';
 
 @Component({
   selector: 'app-person-node',
@@ -8,17 +10,24 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PersonNodeComponent implements OnInit {
 
   @Input() person;
+  @Output() updateTree = new EventEmitter();
 
+  isNodeDeleted = false;
   // To determine whether or not to dosplay the anchor tags in a node
-  showCheck: boolean = false;
+  showCheck = false;
   // To determine whether or not a node should display it's editor
-  isEditing: boolean = false;
+  isEditing = false;
+  // To determine whether or not a node should display it's child creator
+  isCreatingChild = false;
   // To determine whether or not a node's children should be visible
-  showChildren: boolean = true;
+  showChildren = true;
   // To determine if the click action in a button originated from one of the anchor children
-  private childClicked: boolean = false;
+  private childClicked = false;
 
-  constructor() { }
+  constructor(
+    private dataService: DataService,
+    private toast: ToastComponent
+  ) { }
 
   ngOnInit() {
   }
@@ -29,6 +38,10 @@ export class PersonNodeComponent implements OnInit {
 
   toggleEditing() {
     this.isEditing = !this.isEditing;
+  }
+
+  toggleCreatingChild() {
+    this.isCreatingChild = !this.isCreatingChild;
   }
 
   toggleShowChildren() {
@@ -46,19 +59,65 @@ export class PersonNodeComponent implements OnInit {
   }
 
   deleteNode() {
-    console.log('deleted');
-  }
-
-  addChildNode() {
-    console.log('adding child node');
+    if (window.confirm('Are you sure you want to permanently delete this item?')) {
+      this.dataService.deletePerson(this.person).subscribe(
+        res => {
+          this.isNodeDeleted = true;
+          this.updateTree.next(true);
+          this.toast.setMessage('item deleted successfully.', 'success');
+        },
+        error => {
+          console.log(error);
+          this.toast.setMessage('An error occured, Please try again later', 'danger');
+        }
+      );
+    }
   }
 
   onEditorAction($event) {
-    this.person = $event;
+    this.updatePerson($event);
     this.onCancel();
   }
 
+  onCreatorAction($event) {
+    this.createPerson($event);
+    this.onCancel();
+  }
+
+  onUpdateTree($event) {
+    this.updateTree.next($event);
+  }
+
+  updatePerson(person_) {
+    this.dataService.editPerson(this.person).subscribe(
+      res => {
+        this.toast.setMessage('Success', 'success');
+        this.person = person_;
+      },
+      error => {
+        console.log(error);
+        this.toast.setMessage('An error occured', 'danger');
+      },
+      () => {
+      }
+    );
+  }
   onCancel() {
-    this.toggleEditing();
+    this.isCreatingChild = false;
+    this.isEditing = false;
+  }
+
+  private createPerson(person_: any) {
+    this.dataService.addPerson(person_).subscribe(
+      res => {
+        this.person.children.push(res);
+        this.toast.setMessage('Success', 'success');
+        this.updateTree.next(true);
+      },
+      error => {
+        console.log(error);
+        this.toast.setMessage('An error occured', 'danger');
+      }
+    );
   }
 }

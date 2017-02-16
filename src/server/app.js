@@ -81,7 +81,7 @@ db.once('open', function() {
 
   // delete by id
   app.delete('/person/:id', function(req, res) {
-    Cat.findOneAndRemove({_id: req.params.id}, function(err) {
+    Person.findOneAndRemove({_id: req.params.id}, function(err) {
       if(err) return console.error(err);
       res.sendStatus(200);
     });

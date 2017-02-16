@@ -1,0 +1,46 @@
+.note-creator {
+  padding: 15px;
+  background-color: white;
+  border-radius: 3px;
+  display: block;
+}
+
+.actions {
+  padding-left: 15px;
+}
+
+.shadow-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.btn-light {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  min-width: 60px;
+  color: rgba(0,0,0, 0.6);
+  text-transform: uppercase;
+  line-spacing: 1px;
+  padding: 5px;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-light:hover {
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.btn-light:disabled, .btn-light[disabled], .btn-light.disabled {
+  cursor: not-allowed;
+  background-color: rgba(0,0,0,.12);
+  color: rgba(0,0,0,.26);
+}
+
+input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 15px;
+}

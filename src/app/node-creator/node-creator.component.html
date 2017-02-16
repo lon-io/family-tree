@@ -1,0 +1,18 @@
+<div class="note-editor shadow-2">
+  <form (ngSubmit)="createPerson()">
+    <input
+      type="text"
+      [(ngModel)]="person.data.name"
+      name="title"
+      class="col-xs-8"
+      placeholder="Fullname"
+      name="title">
+    <div class="actions col-xs-8 row between-xs">
+      <button
+        type="submit"
+        class="btn-light">
+        Done
+      </button>
+    </div>
+  </form>
+</div>
