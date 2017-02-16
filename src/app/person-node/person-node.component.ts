@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {DataService} from '../services/data.service';
 import {ToastComponent} from '../shared/toast/toast.component';
+import {ApiService} from '../services/api.service';
+import {TreeService} from '../services/tree.service';
 
 @Component({
   selector: 'app-person-node',
@@ -25,7 +26,7 @@ export class PersonNodeComponent implements OnInit {
   private childClicked = false;
 
   constructor(
-    private dataService: DataService,
+    private treeService: TreeService,
     private toast: ToastComponent
   ) { }
 
@@ -60,7 +61,7 @@ export class PersonNodeComponent implements OnInit {
 
   deleteNode() {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
-      this.dataService.deletePerson(this.person).subscribe(
+      this.treeService.deletePerson(this.person, this.person.parent).subscribe(
         res => {
           this.isNodeDeleted = true;
           this.updateTree.next(this.person);
@@ -89,7 +90,7 @@ export class PersonNodeComponent implements OnInit {
   }
 
   updatePerson(person_) {
-    this.dataService.editPerson(this.person).subscribe(
+    this.treeService.editPerson(this.person).subscribe(
       res => {
         this.toast.setMessage('Success', 'success');
         this.person = person_;
@@ -108,7 +109,7 @@ export class PersonNodeComponent implements OnInit {
   }
 
   private createPerson(person_: any) {
-    this.dataService.addPerson(person_).subscribe(
+    this.treeService.addPerson(person_, this.person).subscribe(
       res => {
         this.person.children.push(res);
         this.toast.setMessage('Success', 'success');

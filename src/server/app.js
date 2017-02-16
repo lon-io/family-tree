@@ -72,7 +72,7 @@ db.once('open', function() {
     })
   });
 
-  // update by id
+  // updateTree by id
   app.put('/person/:id', function(req, res) {
     Person.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
       if(err) return console.error(err);

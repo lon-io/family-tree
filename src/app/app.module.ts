@@ -5,13 +5,16 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { DataService } from './services/data.service';
 
 import { ToastComponent } from './shared/toast/toast.component';
 import { FamilyTreeComponent } from './family-tree/family-tree.component';
 import { NodeEditorComponent } from './node-editor/node-editor.component';
 import { PersonNodeComponent } from './person-node/person-node.component';
 import { NodeCreatorComponent } from './node-creator/node-creator.component';
+import {TreeService} from './services/tree.service';
+import {ApiService} from './services/api.service';
+import {Store} from './services/store.service';
+import {StoreHelper} from "./services/store_helper.service";
 
 const routing = RouterModule.forRoot([
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -35,7 +38,10 @@ const routing = RouterModule.forRoot([
     routing
   ],
   providers: [
-    DataService,
+    Store,
+    StoreHelper,
+    ApiService,
+    TreeService,
     ToastComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

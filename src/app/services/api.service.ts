@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class DataService {
+export class ApiService {
 
   private headers = new Headers({
     'Content-Type': 'application/json',

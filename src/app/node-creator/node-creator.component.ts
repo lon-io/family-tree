@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {DataService} from '../services/data.service';
-import {ToastComponent} from '../shared/toast/toast.component';
 import {PersonNode} from '../person-node/person-node.interface';
 
 @Component({
@@ -16,8 +14,6 @@ export class NodeCreatorComponent implements OnInit {
   @Output() cancel = new EventEmitter();
 
   constructor(
-    private dataService: DataService,
-    private toast: ToastComponent
   ) { }
 
   ngOnInit() {

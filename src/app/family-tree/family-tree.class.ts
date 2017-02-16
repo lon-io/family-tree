@@ -11,19 +11,19 @@ export class FamilyTree {
     // this._root.data.deletable = false;
   }
 
-  createNewPersonNode = (data: PersonNodeData) => {
-    return {
-      data : data,
-      parent: null,
-      children : []
-    };
-  };
+  // createNewPersonNode = (data: PersonNodeData) => {
+  //   return {
+  //     data : data,
+  //     parent: null,
+  //     children : []
+  //   };
+  // }
 
   findIndex = (arr, data) => {
     let index;
 
     for (let i = 0; i < arr.length; i++) {
-      if (arr[i].data === data) {
+      if (arr[i]._id === data._id) {
         index = i;
       }
     }
@@ -54,10 +54,10 @@ export class FamilyTree {
   }
 
   add = (data, toData, traversal) => {
-    let child = this.createNewPersonNode(data),
+    let child = data,
       parent = null,
       callback = function (node) {
-        if (node.data === toData) {
+        if (node._id === toData._id) {
           parent = node;
         }
       };
@@ -72,6 +72,23 @@ export class FamilyTree {
     }
   }
 
+  edit = (data, traversal) => {
+    let person = null,
+      callback = function (node) {
+        if (node._id === data._id) {
+          person = node;
+        }
+      };
+
+    this.contains(callback, traversal);
+
+    if (person) {
+      person = data;
+    } else {
+      throw new Error('Cannot edit a non-existent node.');
+    }
+  }
+
   remove = function(data, fromData, traversal) {
     let tree = this,
       parent = null,
@@ -79,7 +96,7 @@ export class FamilyTree {
       index;
 
     let callback = function (node) {
-      if (node.data === fromData) {
+      if (node._id === fromData._id) {
         parent = node;
       }
     };
