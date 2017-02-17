@@ -19,6 +19,7 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
   treeSub: Subscription;
   private persons = [];
   private tree: FamilyTree;
+  private treeExists = false;
   private showCreateRootDialog = false;
   private root: PersonNode;
   private isLoading = true;
@@ -58,10 +59,12 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       .subscribe(
         tree => {
           this.tree = tree;
-          console.log(tree);
           if (this.tree._root._id !== null) {
+            this.treeExists = true;
             this.root = tree._root;
             this.isLoading = false;
+          }else {
+            this.treeExists = false;
           }
         },
         err => console.log(err),

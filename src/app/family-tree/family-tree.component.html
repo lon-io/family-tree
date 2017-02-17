@@ -9,7 +9,7 @@ The markup will be simple nested lists
 
 <app-toast [message]="toast.message"></app-toast>
 <div class="container text-xs-center" *ngIf="!isLoading">
-  <button class="btn btn-success" *ngIf="this.root._id === null" (click)="createRoot()">Specify Patriarch</button>
+  <button class="btn btn-success" *ngIf="!treeExists" (click)="createRoot()">Specify Patriarch</button>
   <div class="col-xs-3" *ngIf="showCreateRootDialog">
     <div class="note-editor shadow-2">
       <form (ngSubmit)="addRoot()">
@@ -30,7 +30,7 @@ The markup will be simple nested lists
       </form>
     </div>
   </div>
-  <div class="tree" *ngIf="this.root._id !== null">
+  <div class="tree" *ngIf="treeExists">
     <ul>
       <li>
         <app-person-node (updateTree)="onUpdateTree($event)" [person]="tree?._root"></app-person-node>
