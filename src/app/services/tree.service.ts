@@ -16,6 +16,7 @@ export class TreeService {
     getPersons() {
         return this.api.getPersons()
             .do((resp: any) => {
+                console.log(resp);
                 let tree = this.storeHelper.unflatten(resp);
                 this.storeHelper.updateTree('tree', tree);
             });
@@ -29,7 +30,8 @@ export class TreeService {
     }
 
   deletePerson(person: any, parent = null) {
-    return this.api.deletePerson(person)
+    let nodes = this.storeHelper.flatten(person);
+    return this.api.deletePersons(person, nodes)
       .do((resp: any) => {
         this.storeHelper.findAndDelete('tree', person, parent);
       });

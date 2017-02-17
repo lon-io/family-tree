@@ -66,4 +66,10 @@ export class StoreHelper {
       this.store.purge();
     }
   }
+
+  flatten(person: any) {
+    const currentState = this.store.getState();
+    let state = currentState.tree;
+    return state.getFlattenedNode(person, state.traverseNodeDF);
+  }
 }

@@ -1,5 +1,6 @@
 import {PersonNode} from '../person-node/person-node.interface';
 import {PersonNodeData} from '../person-node/person-node-data.interface';
+import * as _ from 'underscore';
 /**
  * Created by lon on 1/13/17.
  */
@@ -8,29 +9,9 @@ export class FamilyTree {
 
   constructor(data: PersonNode) {
     this._root = data;
-    // this._root.data.deletable = false;
   }
 
-  // createNewPersonNode = (data: PersonNodeData) => {
-  //   return {
-  //     data : data,
-  //     parent: null,
-  //     children : []
-  //   };
-  // }
-
-  findIndex = (arr, data) => {
-    let index;
-
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i]._id === data._id) {
-        index = i;
-      }
-    }
-
-    return index;
-  }
-
+  // Traverse the entire tree
   traverseDF = (callback) => {
 
     // this is a recurse and immediately-invoking function
@@ -49,10 +30,36 @@ export class FamilyTree {
 
   }
 
+  // Traverse a node in the tree; may also traverse the whole tree if the node is the root node
+  traverseNodeDF = (node, callback) => {
+
+    // this is a recurse and immediately-invoking function
+    (function recurse(currentNode: PersonNode ) {
+      // step 2
+      for (let i = 0, length = currentNode.children.length; i < length; i++) {
+        // step 3
+        recurse(currentNode.children[i]);
+      }
+
+      // step 4
+      callback(currentNode);
+
+      // step 1
+    })(node);
+
+  }
+
+  // Calls the specified traversal method on the tree, passing the callback as an argument
   contains = (callback, traversal)  => {
     traversal.call(this, callback);
   }
 
+  // Calls the specified traversal method on the node passed, passing the callback as an argument
+  nodeContains = (node, callback, traversal)  => {
+    traversal.call(this, node, callback);
+  }
+
+  // Adds node - data as a child to node - todata; using the specified traversal method
   add = (data, toData, traversal) => {
     let child = data,
       parent = null,
@@ -72,6 +79,7 @@ export class FamilyTree {
     }
   }
 
+  // Edits the title property of a node
   edit = (data, traversal) => {
     let person = null,
       callback = function (node) {
@@ -89,6 +97,7 @@ export class FamilyTree {
     }
   }
 
+  // Removes a node; and hence, all its children
   remove = function(data, fromData, traversal) {
     let tree = this,
       parent = null,
@@ -117,4 +126,27 @@ export class FamilyTree {
 
     return childToRemove;
   };
+
+  // Gets an array containing the id of a node and those of all its (direct or indirect) children
+  getFlattenedNode = (person: any, traversal: (node, callback) => any, nodes = []) => {
+    let callback =  (node) => {
+      nodes.push(node._id);
+    };
+    this.nodeContains(person, callback, traversal);
+    return nodes;
+  }
+
+  // Helper method to get the index of an item in an array
+  findIndex = (arr, data) => {
+    let index;
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]._id === data._id) {
+        index = i;
+      }
+    }
+
+    return index;
+  }
+
 }

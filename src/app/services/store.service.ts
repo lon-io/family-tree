@@ -15,7 +15,7 @@ const defaultState: State = {
   tree: new FamilyTree(
     {
       data : {
-        name: '',
+        name: 'Default',
         deletable: false,
         node_open: true
       },

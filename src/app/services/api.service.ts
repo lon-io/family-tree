@@ -32,4 +32,8 @@ export class ApiService {
     return this.http.delete(`${this.api_url}/person/${person._id}`, this.options);
   }
 
+  deletePersons(person, nodes): Observable<any> {
+    return this.http.delete(`${this.api_url}/persons/${person._id}/${nodes}`, this.options);
+  }
+
 }
