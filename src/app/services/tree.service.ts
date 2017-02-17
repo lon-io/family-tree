@@ -15,10 +15,13 @@ export class TreeService {
 
     getPersons() {
         return this.api.getPersons()
-            .do((resp: any) => {
-                console.log(resp);
-                let tree = this.storeHelper.unflatten(resp);
-                this.storeHelper.updateTree('tree', tree);
+            .do((resp: Array<any>) => {
+                if (resp.length !== 0) {
+                  let tree = this.storeHelper.unflatten(resp);
+                  this.storeHelper.updateTree('tree', tree);
+                }else {
+                  this.storeHelper.resetTree();
+                }
             });
     }
 

@@ -67,6 +67,10 @@ export class StoreHelper {
     }
   }
 
+  resetTree() {
+    this.store.purge();
+  }
+
   flatten(person: any) {
     const currentState = this.store.getState();
     let state = currentState.tree;
