@@ -118,13 +118,13 @@ db.once('open', function() {
   });
 
 
-  // all other routes are handled by Angular
+  // all other routes
   app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname,'/../../dist/index.html'));
+    res.sendStatus(404);
   });
 
   app.listen(app.get('port'), function() {
-    console.log('Angular 2 Full Stack listening on port '+app.get('port'));
+    console.log('Server listening on port '+app.get('port'));
   });
 
 });

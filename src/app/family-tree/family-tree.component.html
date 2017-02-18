@@ -1,56 +1,39 @@
-<!--
-We will create a family tree using just CSS(3)
-The markup will be simple nested lists
--->
-
-  <div class="text-xs-center" *ngIf="isLoading">
-    <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
-  </div>
+<div class="text-xs-center" *ngIf="isLoading">
+  <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+</div>
 
 <app-toast [message]="toast.message"></app-toast>
 <div class="container text-xs-center" *ngIf="!isLoading">
   <button class="btn btn-success" *ngIf="!treeExists" (click)="createRoot()">Specify Patriarch</button>
-  <div class="col-xs-3" *ngIf="showCreateRootDialog">
-    <div class="note-editor shadow-2">
-      <form (ngSubmit)="addRoot()">
-        <input
-          type="text"
-          [(ngModel)]="root.data.name"
-          name="title"
-          class="col-xs-8"
-          placeholder="Fullname"
-          name="title">
-        <div class="actions col-xs-4 row between-xs">
-          <button
-            type="submit"
-            class="btn-light">
-            Done
-          </button>
-          <button
-            (click)="closeRootCreatorDialog()"
-            type="button"
-            class="btn-danger_">
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+  <div class="note-editor shadow-2 col-xs-3" *ngIf="showCreateRootDialog">
+    <form (ngSubmit)="addRoot()">
+      <input
+        type="text"
+        [(ngModel)]="root.data.name"
+        name="title"
+        class="col-xs-4"
+        placeholder="Fullname"
+        name="title">
+      <div class="actions col-xs-4 row between-xs">
+        <button
+          type="submit"
+          class="btn-light">
+          Done
+        </button>
+        <button
+          (click)="closeRootCreatorDialog()"
+          type="button"
+          class="btn-danger_">
+          Cancel
+        </button>
+      </div>
+    </form>
   </div>
   <div class="tree" *ngIf="treeExists">
     <ul>
       <li>
         <app-person-node (updateTree)="onUpdateTree($event)" [person]="tree?._root"></app-person-node>
-        <!--<div class="icon" *ngIf="showCheck" (click)="onChecked()">-->
-        <!--<i class="material-icons">check</i>-->
-        <!--</div>-->
-        <!--<button >{{tree?._root?.data?.name}}</button>-->
-        <!--<ul>-->
-        <!--<li *ngFor="let person of tree?._root?.children">-->
-        <!--<app-person-node (checked)="onChildChecked($event)" [person]="person"></app-person-node>-->
-        <!--</li>-->
-        <!--</ul>-->
       </li>
     </ul>
   </div>
-
 </div>
