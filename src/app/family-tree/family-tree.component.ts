@@ -59,9 +59,9 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       .subscribe(
         tree => {
           this.tree = tree;
+          this.root = tree._root;
           if (this.tree._root._id !== null) {
             this.treeExists = true;
-            this.root = tree._root;
             this.isLoading = false;
           }else {
             this.treeExists = false;

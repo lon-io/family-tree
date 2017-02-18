@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   addPerson(person): Observable<any> {
-    return this.http.post(`${this.api_url}/person`, JSON.stringify(person), this.options);
+    return this.http.post(`${this.api_url}/person`, JSON.stringify(person), this.options).map(res => res.json());
   }
 
   editPerson(person): Observable<any> {

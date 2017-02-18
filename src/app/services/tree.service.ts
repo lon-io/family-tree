@@ -27,8 +27,8 @@ export class TreeService {
 
     addPerson(person, parent = null) {
         return this.api.addPerson(person)
-            .do((resp: any) => {
-              this.storeHelper.addNode('tree', person, parent);
+            .do((person_: any) => {
+              this.storeHelper.addNode('tree', person_, parent);
             });
     }
 

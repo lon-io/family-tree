@@ -20,7 +20,7 @@ const defaultState: State = {
         node_open: true
       },
       _id: null,
-      is_root: false,
+      is_root: true,
       parent: null,
       children : []
     })

@@ -57,10 +57,20 @@ db.once('open', function() {
 
   // create
   app.post('/person', function(req, res) {
-    var obj = new Person(req.body);
-    obj.save(function(err, obj) {
+    let person = {
+      is_root: req.body.is_root,
+      data: {
+        deletable: req.body.data.deletable,
+        name: req.body.data.name,
+        node_open: req.body.node_open
+      },
+      parent: req.body.parent,
+      children: []
+    }
+    let obj = new Person(person);
+    obj.save(function(err, doc) {
       if(err) return console.error(err);
-      res.status(200).json(obj);
+      res.json(doc);
     });
   });
 
