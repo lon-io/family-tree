@@ -7,11 +7,17 @@
       class="col-xs-8"
       placeholder="Fullname"
       name="title">
-    <div class="actions col-xs-8 row between-xs">
+    <div class="actions col-xs-4 row between-xs">
       <button
         type="submit"
         class="btn-light">
         Done
+      </button>
+      <button
+        (click)="closeCreatorDialog()"
+        type="button"
+        class="btn-danger_">
+        Cancel
       </button>
     </div>
   </form>

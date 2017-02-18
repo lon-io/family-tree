@@ -16,8 +16,8 @@ export class NodeEditorComponent {
     this.done.next(this.person);
   }
 
-  // cancelEditing(value: boolean) {
-  //   this.cancel.next(true);
-  // }
+  closeEditorDialog() {
+    this.cancel.next(true);
+  }
 
 }

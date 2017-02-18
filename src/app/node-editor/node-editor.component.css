@@ -23,8 +23,32 @@
   line-spacing: 1px;
   padding: 5px;
   text-align: center;
-  background-color: transparent;
+  background-color: royalblue;
   cursor: pointer;
+}
+
+.btn-danger_ {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  min-width: 60px;
+  color: rgba(0,0,0, 0.6);
+  text-transform: uppercase;
+  line-spacing: 1px;
+  padding: 5px;
+  text-align: center;
+  background-color: indianred;
+  cursor: pointer;
+}
+
+.btn-danger_:hover {
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.btn-danger_:disabled, .btn-danger_[disabled], .btn-danger_.disabled {
+  cursor: not-allowed;
+  background-color: rgba(0,0,0,.12);
+  color: rgba(0,0,0,.26);
 }
 
 .btn-light:hover {
