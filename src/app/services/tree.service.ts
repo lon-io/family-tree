@@ -13,6 +13,7 @@ export class TreeService {
     ) {
     }
 
+    // Calls the api to get all nodes
     getPersons() {
         return this.api.getPersons()
             .do((resp: Array<any>) => {
@@ -25,6 +26,7 @@ export class TreeService {
             });
     }
 
+    // Calls the api to add a node
     addPerson(person, parent = null) {
         return this.api.addPerson(person)
             .do((person_: any) => {
@@ -32,6 +34,7 @@ export class TreeService {
             });
     }
 
+  // Calls the api to delete a node
   deletePerson(person: any, parent = null) {
     let nodes = this.storeHelper.flatten(person);
     return this.api.deletePersons(person, nodes)
@@ -40,6 +43,7 @@ export class TreeService {
       });
   }
 
+  // Calls the api to update a node
   editPerson(person: any) {
     return this.api.editPerson(person)
       .do((resp: any) => {

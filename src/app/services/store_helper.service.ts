@@ -12,7 +12,7 @@ import * as _ from 'underscore';
 export class StoreHelper {
   constructor(private store: Store) {}
 
-  // http://stackoverflow.com/a/22072374/4931825
+  // http://stackoverflow.com/a/22072374/4931825; unflatten the array of nodes into a tree
   unflatten(array, parent= null, tree = null) {
     if (parent === null) {
       // We're at the root node
@@ -33,11 +33,13 @@ export class StoreHelper {
     return tree;
   };
 
+  // update the tree
   updateTree(prop, state) {
     const currentState = this.store.getState();
     this.store.setState(Object.assign({}, currentState, { [prop]: state }));
   }
 
+  // add a node to the tree
   addNode(prop, child, parent) {
     const currentState = this.store.getState();
     let state = currentState.tree;
@@ -49,6 +51,7 @@ export class StoreHelper {
     this.store.setState(Object.assign({}, currentState, { [prop]: state }));
   }
 
+  // edit a node
   editNode(prop, child) {
     const currentState = this.store.getState();
     let state = currentState.tree;
@@ -56,6 +59,7 @@ export class StoreHelper {
     this.store.setState(Object.assign({}, currentState, { [prop]: state }));
   }
 
+  // find and delete a node; and invariably, its chidren
   findAndDelete(prop, child, parent) {
     const currentState = this.store.getState();
     let state = currentState.tree;
@@ -67,10 +71,12 @@ export class StoreHelper {
     }
   }
 
+  // reset the tree to its default state
   resetTree() {
     this.store.purge();
   }
 
+  // flatten a node (to be deleted) to get an array of the node's id, the ids of all its (direct or indirect) children
   flatten(person: any) {
     const currentState = this.store.getState();
     let state = currentState.tree;

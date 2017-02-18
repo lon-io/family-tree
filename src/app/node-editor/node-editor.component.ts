@@ -12,7 +12,6 @@ export class NodeEditorComponent {
   @Output() cancel = new EventEmitter();
 
   updateTitle() {
-    // this.showEditor(false);
     this.done.next(this.person);
   }
 

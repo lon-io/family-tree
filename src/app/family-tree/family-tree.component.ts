@@ -2,9 +2,6 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ToastComponent} from '../shared/toast/toast.component';
 import {PersonNode} from '../person-node/person-node.interface';
 import {FamilyTree} from './family-tree.class';
-import {PersonNodeData} from '../person-node/person-node-data.interface';
-import {ApiService} from '../services/api.service';
-import * as _ from 'underscore';
 import {Subscription} from 'rxjs';
 import {Store} from '../services/store.service';
 import {TreeService} from '../services/tree.service';
@@ -16,7 +13,7 @@ import {TreeService} from '../services/tree.service';
 })
 export class FamilyTreeComponent implements OnInit, OnDestroy {
 
-  treeSub: Subscription;
+  storeSub: Subscription;
   private persons = [];
   private tree: FamilyTree;
   private treeExists = false;
@@ -33,6 +30,7 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    // Set dummy default for root node
     this.root = {
       _id: null,
       is_root: true,
@@ -45,6 +43,7 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       children: []
     };
 
+    // fetch all nodes
     this.treeService.getPersons().subscribe(
       (data) => {
         this.isLoading = false;
@@ -54,7 +53,8 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.treeSub = this.store.changes
+    // Subscribe to changes in the store's data
+    this.storeSub = this.store.changes
       .map(data => data.tree)
       .subscribe(
         tree => {
@@ -73,15 +73,18 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       );
   }
 
+  // unsubscribe form the store to prevent memory leakage
   ngOnDestroy(): void {
-    this.treeSub.unsubscribe();
+    this.storeSub.unsubscribe();
   }
 
+  // On updating any child node (direct or indirect), reset the tree
   onUpdateTree($event) {
     this.treeService.getPersons().subscribe(
     );
   }
 
+  // create the root node
   addRoot() {
     this.treeService.addPerson(this.root).subscribe(
       res => {
@@ -93,10 +96,12 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
     );
   }
 
+  // close the creator dialog
   closeRootCreatorDialog() {
     this.showCreateRootDialog = false;
   }
 
+  // show the creator dialog
   createRoot() {
     this.showCreateRootDialog = true;
   }

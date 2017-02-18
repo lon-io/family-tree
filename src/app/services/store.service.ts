@@ -7,15 +7,17 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {FamilyTree} from '../family-tree/family-tree.class';
 
+// Store state interface
 export interface State {
   tree: FamilyTree;
 }
 
+// Create the store default state
 const defaultState: State = {
   tree: new FamilyTree(
     {
       data : {
-        name: 'Default',
+        name: '',
         deletable: false,
         node_open: true
       },
@@ -26,22 +28,28 @@ const defaultState: State = {
     })
 };
 
+// Immutable store
 const _store = new BehaviorSubject<State>(defaultState);
 
 @Injectable()
 export class Store {
+
+  // handle to store to permit state setting and getting
   private store = _store;
   changes = this.store.asObservable()
     .distinctUntilChanged();
 
+  // Set the state
   setState(state: State) {
     this.store.next(state);
   }
 
+  // Get the current state
   getState(): State {
     return this.store.value;
   }
 
+  // Reset the state to the default
   purge() {
     this.store.next(defaultState);
   }

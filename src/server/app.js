@@ -90,31 +90,6 @@ db.once('open', function() {
     })
   });
 
-  // // delete by id
-  // app.delete('/person/:id', function(req, res) {
-  //   Person.find({parent: req.params.id})
-  //     .lean()
-  //     .exec()
-  //     .then(
-  //       children => {
-  //         _.each(children, (person) => {
-  //           Person.findOneAndRemove({_id: person._id}, function(err) {
-  //             if(err) return console.error(err);
-  //           });
-  //         });
-  //         Person.findOneAndRemove({_id: req.params.id}, function(err) {
-  //           if(err) return console.error(err);
-  //           Person.findOneAndUpdate({children: req.params.id}, {$pull: {_id: req.params.id}}, function(err) {
-  //           });
-  //           res.sendStatus(200);
-  //         });
-  //       }
-  //     )
-  //     .catch(err => {
-  //       return console.log(err);
-  //     })
-  // });
-
   // delete by id
   app.delete('/persons/:id/:nodes', function(req, res) {
     Person.find({_id: req.params.id})

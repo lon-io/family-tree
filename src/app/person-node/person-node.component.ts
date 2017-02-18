@@ -59,6 +59,7 @@ export class PersonNodeComponent implements OnInit {
     }
   }
 
+  // DELETE the current node, subject to confirmation
   deleteNode() {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.treeService.deletePerson(this.person, this.person.parent).subscribe(
@@ -75,20 +76,24 @@ export class PersonNodeComponent implements OnInit {
     }
   }
 
+  // Editor Dialog is done, update node's data and close the dialog
   onEditorAction($event) {
     this.updatePerson($event);
     this.onCancel();
   }
 
+  // Child Creator Dialog is done, create child node and close the dialog
   onCreatorAction($event) {
     this.createPerson($event);
     this.onCancel();
   }
 
+  // Cascade call to the family tree to trigger the store data update. Alternatively, you may DI the treeservice and do it from here
   onUpdateTree($event) {
     this.updateTree.next($event);
   }
 
+  // Update the node's data
   updatePerson(person_) {
     this.treeService.editPerson(this.person).subscribe(
       res => {
@@ -103,11 +108,14 @@ export class PersonNodeComponent implements OnInit {
       }
     );
   }
+
+  // Creator or Editor action was cancelled
   onCancel() {
     this.isCreatingChild = false;
     this.isEditing = false;
   }
 
+  // Create a child bode
   private createPerson(person_: any) {
     this.treeService.addPerson(person_, this.person).subscribe(
       res => {
