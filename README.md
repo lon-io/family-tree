@@ -1,7 +1,7 @@
 ### Family Tree
 
 This project is a MEAN app that allows you to create a tree view.
-The project provides a database so your tree data is persited
+The project provides a database so your tree data is persisted
 
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/basic_view.png)
 
