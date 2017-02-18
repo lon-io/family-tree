@@ -87,6 +87,7 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
       res => {
         this.toast.setMessage('Success', 'success');
         this.showCreateRootDialog = false;
+        this.treeExists = true;
       },
       err => console.log(err)
     );
