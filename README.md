@@ -12,6 +12,7 @@ The project provides a database so your tree data is persited
 3. run `npm start`
 
 You can:
+
 1. Create the root node
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/patriach_view.png)
 
