@@ -93,6 +93,10 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
     );
   }
 
+  closeRootCreatorDialog() {
+    this.showCreateRootDialog = false;
+  }
+
   createRoot() {
     this.showCreateRootDialog = true;
   }
