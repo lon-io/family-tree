@@ -1,3 +1,7 @@
+// https://github.com/motdotla/dotenv/issues/133#issuecomment-255298822
+var dotenv = require('dotenv');
+dotenv.config({ silent: true });
+
 var express = require('express');
 var morgan = require('morgan'); // logger
 var bodyParser = require('body-parser');
@@ -5,7 +9,7 @@ var cors = require('cors');
 var _ = require('underscore');
 
 var app = express();
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8080));
 
 app.use('/', express.static(__dirname + '/../../dist'));
 
@@ -18,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/family-tree');
+mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
