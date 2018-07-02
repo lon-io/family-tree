@@ -2,8 +2,8 @@ version: '2'
 services:
   server:
     build: .
-    image: family_tree_server
-    container_name: family_tree_server
+    image: familytreeserver
+    container_name: familytreeserver
     stdin_open: true
     tty: true
     volumes:
@@ -15,7 +15,7 @@ services:
     command: npm run dev # We only use compose locally
 
   mongo:
-    container_name: family_tree_server_db
+    container_name: familytreeserver_db
     image: mongo:3.4
     ports:
       - "27019:27017"
