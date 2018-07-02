@@ -14,7 +14,7 @@ services:
       - main_network
 
   mongo:
-    container_name: family_tree_db
+    container_name: family_tree_server_db
     image: mongo:3.4
     ports:
       - "27019:27017"
