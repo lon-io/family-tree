@@ -1,0 +1,23 @@
+{
+  "name": "family-tree-server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Lon Ilesanmi",
+  "description": "Family Tree Server",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon server/index.js"
+  },
+  "private": true,
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "cors": "2.8.1",
+    "express": "4.14.0",
+    "mongoose": "4.7.6",
+    "morgan": "1.7.0",
+    "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "1.11.0",
+  }
+}
