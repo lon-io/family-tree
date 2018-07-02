@@ -5,6 +5,9 @@ The project provides a database so your tree data is persisted
 
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/basic_view.png)
 
+### Dependencies
+MongoDB
+
 ## Installation
 1. git clone https://github.com/lon-albert/family-tree.git
 2. run `npm install`
@@ -24,5 +27,5 @@ You can:
 
 4. Delete a node; and invariably all its children
 
-5. Get a hierarchical highlight effect on hovering over a node 
+5. Get a hierarchical highlight effect on hovering over a node
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/hover_view.png)
