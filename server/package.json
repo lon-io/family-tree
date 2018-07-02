@@ -6,7 +6,7 @@
   "description": "Family Tree Server",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon server/index.js"
+    "dev": "nodemon index.js"
   },
   "main": "index.js",
   "private": true,
