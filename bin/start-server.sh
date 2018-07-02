@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 IMAGE_NAME=familytreeserver
 COMPOSE_PATH=server/docker-compose.yml
