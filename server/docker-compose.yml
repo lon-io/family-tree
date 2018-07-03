@@ -1,0 +1,31 @@
+version: '2'
+services:
+  server:
+    build: .
+    image: familytreeserver
+    container_name: familytreeserver
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/src
+    ports:
+      - "8080:8080"
+    networks:
+      - main_network
+    command: npm run dev # We only use compose locally
+    env_file: .env
+    environment:
+      - NODE_ENV=docker
+      - MONGODB_URI=mongodb://familytreeserver_db:27017/family-tree
+
+  mongo:
+    container_name: familytreeserver_db
+    image: mongo:3.4
+    ports:
+      - "27017:27017"
+    networks:
+      - main_network
+
+networks:
+  main_network:
+    driver: bridge

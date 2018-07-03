@@ -5,13 +5,32 @@ The project provides a database so your tree data is persisted
 
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/basic_view.png)
 
-## Installation
-1. git clone https://github.com/lon-albert/family-tree.git
-2. run `npm install`
-3. run `npm run server`
-3. run `npm start`
+Dependencies
+---
+MongoDB
 
-You can:
+Setup
+---
+
+1. Install MongoDB: https://docs.mongodb.com/manual/installation/
+2. Clone: `git clone https://github.com/lon-albert/family-tree.git`
+3. Install Deps: `npm install`
+
+Usage
+---
+```
+npm run server
+npm start
+```
+
+Docker (Server Only)
+---
+1. Start the Server: `bin/start-server.sh`
+2. View Server logs: `bin/server-logs.sh`
+3. Start the Client: `npm start`
+
+Features
+---
 
 1. Create the root node
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/patriach_view.png)
@@ -22,7 +41,8 @@ You can:
 3. Edit the title of each node
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/edit_view.png)
 
-4. Delete a node; and invariably all its children
 
-5. Get a hierarchical highlight effect on hovering over a node 
+4. Get a hierarchical highlight effect on hovering over a node
 ![alt tag](https://raw.githubusercontent.com/lon-albert/family-tree/master/src/assets/hover_view.png)
+
+5. Delete a node; and invariably all its children
