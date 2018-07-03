@@ -23,6 +23,8 @@ services:
     image: mongo:3.4
     ports:
       - "27017:27017"
+    networks:
+      - main_network
 
 networks:
   main_network:
