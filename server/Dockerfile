@@ -18,4 +18,4 @@ VOLUME ["/src/node_modules"]
 
 EXPOSE 8080
 
-CMD [ "node server.js" ]
+CMD [ "node", "index.js" ]
