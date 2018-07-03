@@ -12,7 +12,8 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "build": "ng build --watch"
+    "build": "ng build --watch",
+    "server": "cd server && npm start"
   },
   "private": true,
   "dependencies": {
