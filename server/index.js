@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var _ = require('underscore');
 
+console.log(process.env);
+
 var app = express();
 app.set('port', (process.env.PORT || 8080));
 
