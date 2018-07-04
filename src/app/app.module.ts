@@ -19,7 +19,7 @@ import {StoreHelper} from "./services/store_helper.service";
 const routing = RouterModule.forRoot([
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home',  component: FamilyTreeComponent }
-]);
+], { useHash: true });
 
 @NgModule({
   declarations: [

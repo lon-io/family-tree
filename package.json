@@ -12,7 +12,8 @@
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "build": "ng build --watch",
+    "build-dev": "ng build --watch",
+    "build": "ng build --prod --env=prod --base-href /family-tree/",
     "server": "cd server && npm start"
   },
   "private": true,
