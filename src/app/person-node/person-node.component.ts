@@ -45,6 +45,10 @@ export class PersonNodeComponent implements OnInit {
     this.isCreatingChild = !this.isCreatingChild;
   }
 
+  setShowChildren(show) {
+    this.showChildren = !!show;
+  }
+
   toggleShowChildren() {
     this.showChildren = !this.showChildren;
   }
@@ -86,6 +90,7 @@ export class PersonNodeComponent implements OnInit {
   onCreatorAction($event) {
     this.createPerson($event);
     this.onCancel();
+    this.setShowChildren(true);
   }
 
   // Cascade call to the family tree to trigger the store data update. Alternatively, you may DI the treeservice and do it from here
