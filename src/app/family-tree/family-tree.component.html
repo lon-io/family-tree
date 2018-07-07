@@ -2,14 +2,14 @@
   <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
 </div>
 
-<app-toast [message]="toast.message"></app-toast>
+<app-toast [message]="getToastMessage()"></app-toast>
 <div class="container text-xs-center" *ngIf="!isLoading">
   <button class="btn btn-success" *ngIf="!treeExists" (click)="createRoot()">Specify Patriarch</button>
-  <div class="note-editor shadow-2 col-xs-3" *ngIf="showCreateRootDialog">
+  <div class="note-editor shadow-2 col-xs-3" *ngIf="shouldShowCreateRootDialog()">
     <form (ngSubmit)="addRoot()">
       <input
         type="text"
-        [(ngModel)]="root.data.name"
+        [(ngModel)]="getRoot().data.name"
         name="title"
         class="col-xs-4"
         placeholder="Fullname"
@@ -29,10 +29,10 @@
       </div>
     </form>
   </div>
-  <div class="tree" *ngIf="treeExists">
+  <div class="tree" *ngIf="getTreeExistence()">
     <ul>
       <li>
-        <app-person-node (updateTree)="onUpdateTree($event)" [person]="tree?._root"></app-person-node>
+        <app-person-node (updateTree)="onUpdateTree($event)" [person]="getTree()?._root"></app-person-node>
       </li>
     </ul>
   </div>
