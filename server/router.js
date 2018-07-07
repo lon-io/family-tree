@@ -1,5 +1,6 @@
 // Model
 var Person = require('./person.model');
+var _ = require('underscore');
 
 module.exports = function (app) {
   // select all
