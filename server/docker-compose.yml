@@ -22,7 +22,7 @@ services:
     container_name: familytreeserver_db
     image: mongo:3.4
     ports:
-      - "27017:27017"
+      - "27020:27017"
     networks:
       - main_network
 

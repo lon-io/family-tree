@@ -19,4 +19,8 @@ export class NodeEditorComponent {
     this.cancel.next(true);
   }
 
+  getPerson() {
+    return this.person;
+  }
+
 }

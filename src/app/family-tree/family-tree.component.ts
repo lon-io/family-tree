@@ -14,12 +14,12 @@ import {TreeService} from '../services/tree.service';
 export class FamilyTreeComponent implements OnInit, OnDestroy {
 
   storeSub: Subscription;
+  isLoading = true;
   private persons = [];
   private tree: FamilyTree;
   private treeExists = false;
   private showCreateRootDialog = false;
   private root: PersonNode;
-  private isLoading = true;
 
   constructor(private toast: ToastComponent,
               private treeService: TreeService,
@@ -104,5 +104,25 @@ export class FamilyTreeComponent implements OnInit, OnDestroy {
   // show the creator dialog
   createRoot() {
     this.showCreateRootDialog = true;
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+  getTree() {
+    return this.tree;
+  }
+
+  getTreeExistence() {
+    return this.treeExists;
+  }
+
+  getToastMessage() {
+    return this.toast.message;
+  }
+
+  shouldShowCreateRootDialog() {
+    return this.showCreateRootDialog;
   }
 }

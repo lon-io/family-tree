@@ -81,7 +81,7 @@ right connector from last child*/
   width: 0; height: 20px;
 }
 
-.tree li button{
+.tree li .person-node {
   border: 1px solid #ccc;
   padding: 10px 20px;
   text-decoration: none;
@@ -101,14 +101,14 @@ right connector from last child*/
 
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
-.tree li button:hover, .tree li button:hover+ul li button {
+.tree li .person-node:hover, .tree li .person-node:hover+ul li .person-node {
   background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
 /*Connector styles on hover*/
-.tree li button:hover+ul li::after,
-.tree li button:hover+ul li::before,
-.tree li button:hover+ul::before,
-.tree li button:hover+ul ul::before{
+.tree li .person-node:hover+ul li::after,
+.tree li .person-node:hover+ul li::before,
+.tree li .person-node:hover+ul::before,
+.tree li .person-node:hover+ul ul::before{
   border-color:  #94a0b4;
 }
 
@@ -121,4 +121,68 @@ Thanks :)*/
   /*position: absolute;*/
   /*color: black;*/
   cursor: pointer;
+}
+
+.actions {
+  padding-left: 15px;
+}
+
+.shadow-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.btn-light {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  min-width: 60px;
+  color: rgba(0,0,0, 0.6);
+  text-transform: uppercase;
+  line-spacing: 1px;
+  padding: 5px;
+  text-align: center;
+  background-color: royalblue;
+  cursor: pointer;
+}
+
+.btn-danger_ {
+  border: none;
+  outline: none;
+  border-radius: 2px;
+  min-width: 60px;
+  color: rgba(0,0,0, 0.6);
+  text-transform: uppercase;
+  line-spacing: 1px;
+  padding: 5px;
+  text-align: center;
+  background-color: indianred;
+  cursor: pointer;
+}
+
+.btn-danger_:hover {
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.btn-danger_:disabled, .btn-danger_[disabled], .btn-danger_.disabled {
+  cursor: not-allowed;
+  background-color: rgba(0,0,0,.12);
+  color: rgba(0,0,0,.26);
+}
+
+.btn-light:hover {
+  background-color: rgba(0,0,0, 0.2);
+}
+
+.btn-light:disabled, .btn-light[disabled], .btn-light.disabled {
+  cursor: not-allowed;
+  background-color: rgba(0,0,0,.12);
+  color: rgba(0,0,0,.26);
+}
+
+input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 15px;
 }

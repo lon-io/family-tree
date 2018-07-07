@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -13,7 +14,7 @@ export class ApiService {
     'charset': 'UTF-8' });
   private options = new RequestOptions({ headers: this.headers });
   // Url for the server. Note that the server allows Cross Origin scripts from this url
-  api_url = 'http://localhost:8080'
+  api_url = environment.apiBaseUrl;
 
   constructor(private http: Http) { }
 
