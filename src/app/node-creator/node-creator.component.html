@@ -2,7 +2,7 @@
   <form (ngSubmit)="createPerson()">
     <input
       type="text"
-      [(ngModel)]="person.data.name"
+      [(ngModel)]="getPerson().data.name"
       name="title"
       class="col-xs-8"
       placeholder="Fullname"

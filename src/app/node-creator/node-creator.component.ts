@@ -34,6 +34,10 @@ export class NodeCreatorComponent implements OnInit {
     this.done.next(this.person);
   }
 
+  getPerson() {
+    return this.person;
+  }
+
   closeCreatorDialog() {
     this.cancel.next(true);
   }
