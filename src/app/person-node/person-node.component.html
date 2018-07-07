@@ -1,29 +1,36 @@
-<button *ngIf="!isNodeDeleted"
-        (mouseenter)="toggleCheck()"
-        (mouseleave)="toggleCheck()"
-        (click)="onChecked()">{{person?.data?.name}}
-  <a class="icon"
+<div
+  class="person-node shadow-2"
+  (mouseenter)="toggleCheck()"
+  (mouseleave)="toggleCheck()"
+  (click)="onChecked()"
+  >
+  <h6 *ngIf="!isNodeDeleted"
+        >{{person?.data?.name}}
+  </h6>
+  <div>
+    <a class="icon"
      *ngIf="showCheck"
      (mouseenter)="toggleChildClick()"
      (mouseleave)="toggleChildClick()"
      (click)="toggleCreatingChild()">
     <i class="fa fa-plus fa-1x text-success"></i>
-  </a>
-  <a class="icon"
-     *ngIf="showCheck"
-     (click)="toggleEditing()"
-     (mouseenter)="toggleChildClick()"
-     (mouseleave)="toggleChildClick()">
-    <i class="fa fa-pencil fa-1x text-info"></i>
-  </a>
-  <a class="icon"
-     *ngIf="showCheck"
-     (click)="deleteNode()"
-     (mouseenter)="toggleChildClick()"
-     (mouseleave)="toggleChildClick()">
-    <i class="fa fa-trash fa-1x text-danger"></i>
-  </a>
-</button>
+    </a>
+    <a class="icon"
+      *ngIf="showCheck"
+      (click)="toggleEditing()"
+      (mouseenter)="toggleChildClick()"
+      (mouseleave)="toggleChildClick()">
+      <i class="fa fa-pencil fa-1x text-info"></i>
+    </a>
+    <a class="icon"
+      *ngIf="showCheck"
+      (click)="deleteNode()"
+      (mouseenter)="toggleChildClick()"
+      (mouseleave)="toggleChildClick()">
+      <i class="fa fa-trash fa-1x text-danger"></i>
+    </a>
+  </div>
+</div>
 <div class="col-xs-3" *ngIf="isEditing">
   <app-node-editor
     (done)="onEditorAction($event)"
