@@ -13,7 +13,7 @@ Setup
 ---
 
 1. Install MongoDB: https://docs.mongodb.com/manual/installation/
-2. Clone: `git clone https://github.com/lon-albert/family-tree.git`
+2. Clone: `git clone https://github.com/lon-io/family-tree.git`
 3. Install Deps: `npm install`
 
 Usage

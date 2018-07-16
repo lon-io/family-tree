@@ -78,7 +78,6 @@ module.exports = function (app) {
           let nodes = req.params.nodes.split(',');
           console.log(nodes);
           _.each(nodes, (node_id) => {
-            console.log(node_id);
             Person.findOneAndRemove({
               _id: node_id
             }, function (err) {

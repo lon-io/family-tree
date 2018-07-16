@@ -2,7 +2,7 @@
   "name": "family-tree-server",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Lon Ilesanmi",
+  "author": "Lon Ilesanmi <lonilesanmi@gmail.com>",
   "description": "Family Tree Server",
   "scripts": {
     "start": "node index.js",
